@@ -76,11 +76,17 @@ def user():
     Ivorie_C.setFile("./USERS/Ivorie_C.txt")
     Ivorie_C.setAdmin(True)
 
+    Leticia_C = Person()
+    Leticia_C.setName("Leticia C")
+    Leticia_C.setFile("./USERS/Leticia_C.txt")
+    Leticia_C.setAdmin(True)
+
     names.append(Angel_B)
     names.append(Audrey_C)
     names.append(Berenice_P)
     names.append(Flora_V)
     names.append(Ivorie_C)
+    names.append(Leticia_C)
     for name in names:
         read_data(name,name.file)
 

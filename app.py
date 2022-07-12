@@ -79,7 +79,7 @@ def user():
     Leticia_C = Person()
     Leticia_C.setName("Leticia C")
     Leticia_C.setFile("./USERS/Leticia_C.txt")
-    Leticia_C.setAdmin(True)
+
 
     names.append(Angel_B)
     names.append(Audrey_C)

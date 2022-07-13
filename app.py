@@ -208,7 +208,7 @@ def nxtWeek(name= Person()):
                 put_text('sunday: '),
                 put_text('start: ' + name.NsunStart),
                 put_text('end: ' + name.NsunEnd),
-            ]), put_row([ put_text('Last Week: 11/Jul/2022 17/Jul/2022')])
+            ]), put_row([ put_text('This Week: 11/Jul/2022 17/Jul/2022')])
 
         ]),
 

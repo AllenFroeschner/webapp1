@@ -22,6 +22,20 @@ class Person:
     satEnd = "01:00"
     sunStart = "13:00"
     sunEnd = "21:00"
+    NmondayStart = "OFF"
+    NmondayEnd = "OFF"
+    NtusStart = "OFF"
+    NtusEnd = "OFF"
+    NwedStart = "OFF"
+    NwedEnd = "00:00"
+    NthuStart = "16:00"
+    NthuEnd = "00:00"
+    NfriStart = "17:00"
+    NfriEnd = "01:00"
+    NsatStart = "16:00"
+    NsatEnd = "01:00"
+    NsunStart = "13:00"
+    NsunEnd = "21:00"
 
     def setTimes(self,lines=[""]):
         self.mondayStart = lines[0]
@@ -38,6 +52,20 @@ class Person:
         self.satEnd = lines[11]
         self.sunStart = lines[12]
         self.sunEnd = lines[13]
+        self.NmondayStart = lines[15]
+        self.NmondayEnd = lines[16]
+        self.NtusStart = lines[17]
+        self.NtusEnd = lines[18]
+        self.NwedStart = lines[19]
+        self.NwedEnd = lines[20]
+        self.NthuStart = lines[21]
+        self.NthuEnd = lines[22]
+        self.NfriStart = lines[23]
+        self.NfriEnd = lines[24]
+        self.NsatStart = lines[25]
+        self.NsatEnd = lines[26]
+        self.NsunStart = lines[27]
+        self.NsunEnd = lines[28]
     def setName(self, x=str("")):
         self.name=x
     def getName(self):
@@ -100,6 +128,7 @@ def user():
 
         if fname == name.getName():
             #put_text([name.name , "Monday: "+ name.mondayStart+"-"+ name.mondayEnd])
+            set_schedule(name)
             if name.isAdmin==True:
                 put_text('hi')
                 passwd= input.input("Input password:", type='text')
@@ -147,26 +176,67 @@ def user():
                 ]),
 
             ])
+def nxtWeek(name= Person()):
+    put_row([
+        put_column([
+            put_text(name.name),
+            put_row([
+                put_text('Monday: '),
+                put_text('start: ' + name.NmondayStart),
+                put_text('end: ' + name.NmondayEnd),
+            ]), put_row([
+                put_text('Tuesday: '),
+                put_text('start: ' + name.NtusStart),
+                put_text('end: ' + name.NtusEnd),
+            ]), put_row([
+                put_text('Wednesday: '),
+                put_text('start: ' + name.NwedStart),
+                put_text('end: ' + name.NwedEnd),
+            ]), put_row([
+                put_text('Thursday: '),
+                put_text('start: ' + name.NthuStart),
+                put_text('end: ' + name.NthuEnd),
+            ]), put_row([
+                put_text('Friday: '),
+                put_text('start: ' + name.NfriStart),
+                put_text('end: ' + name.NfriEnd),
+            ]), put_row([
+                put_text('Saturday: '),
+                put_text('start: ' + name.NsatStart),
+                put_text('end: ' + name.NsatEnd),
+            ]), put_row([
+                put_text('sunday: '),
+                put_text('start: ' + name.NsunStart),
+                put_text('end: ' + name.NsunEnd),
+            ]), put_row([ put_text('Last Week: 11/Jul/2022 17/Jul/2022')])
 
-def set_schedule():
+        ]),
+
+    ])
+
+def set_schedule(name = Person()):
     def select_date(set_value):
-        day = '12/jul/2022'
-        day2 = '17/jul/2022'
-        dt = datetime.strptime(day, '%d/%b/%Y')
-        dt1 = datetime.strptime(day2, '%d/%b/%Y')
-        start = dt - timedelta(days=dt.weekday())
+        day = date.today()
+
+        #dt = datetime.strptime(day, '%d/%b/%Y')
+
+        start = day - timedelta(days=day.weekday())
         end = start + timedelta(days=6)
         start1 = start + timedelta(days=7)
         end1 = start1 + timedelta(days=6)
         with popup('Select Date range'):
             put_buttons([start.strftime('%d/%b/%Y')+' '+end.strftime('%d/%b/%Y')], onclick=[lambda: set_value(start.strftime('%d/%b/%Y')+' '+end.strftime('%d/%b/%Y'), 'This Week')])
             put_buttons([start1.strftime('%d/%b/%Y')+' '+end1.strftime('%d/%b/%Y')], onclick=[lambda: set_value(start1.strftime('%d/%b/%Y')+' '+end1.strftime('%d/%b/%Y'), 'Next Week')])
+        return start1.strftime('%d/%b/%Y')+' '+end1.strftime('%d/%b/%Y')
+    d = input.input('Date', action=('Select', select_date), readonly=True)
+    put_text(d)
+    if d == '18/Jul/2022 24/Jul/2022':
+        nxtWeek(name)
 
-    d = input('Date', action=('Select', select_date), readonly=True)
-    put_text( d)
 
 
 if __name__ == '__main__':
+    #user()
     import argparse
     from pywebio.platform.tornado_http import start_server as start_http_server
     from pywebio import start_server as start_ws_server

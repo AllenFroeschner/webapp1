@@ -226,7 +226,7 @@ def set_schedule(name = Person()):
         end1 = start1 + timedelta(days=6)
         with popup('Select Date range'):
             put_buttons([start.strftime('%d/%b/%Y')+' '+end.strftime('%d/%b/%Y')], onclick=[lambda: set_value(start.strftime('%d/%b/%Y')+' '+end.strftime('%d/%b/%Y'), 'This Week')])
-            put_buttons([start1.strftime('%d/%b/%Y')+' '+end1.strftime('%d/%b/%Y')], onclick=[lambda: set_value(start1.strftime('%d/%b/%Y')+' '+end1.strftime('%d/%b/%Y'), 'Next Week')])
+            put_buttons([start1.strftime('%d/%b/%Y')+' '+end1.strftime('%d/%b/%Y')], onclick=[lambda: set_value(start1.strftime('%d/%b/%Y')+' '+end1.strftime('%d/%b/%Y'), 'Next Week',close_popup())])
         return start1.strftime('%d/%b/%Y')+' '+end1.strftime('%d/%b/%Y')
     d = input.input('Date', action=('Select', select_date), readonly=True)
     put_text(d)

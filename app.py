@@ -84,7 +84,7 @@ def read_data(user= Person(),name=""):
 
 
 def user():
-    
+    set_env(title='Mcdonalds Schedule')
     names = []
     Angel_B = Person()
 

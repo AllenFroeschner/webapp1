@@ -1,4 +1,5 @@
-# A simple script to calculate BMI
+# started building this the wrong way and decided not to go back and rewrite the way the person class works. basic mcdonalds scheduling concept 
+# http://mcdonaldschedule.herokuapp.com/
 from pywebio.input import *
 from pywebio import *
 from pywebio.output import *
